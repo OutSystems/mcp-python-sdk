@@ -29,9 +29,9 @@ jobs:
   - template: python/packages/new-azure-pipeline-pr.yml@rd-ai-azure-pipeline-templates
     parameters:
       PackageName: 'mcp-python-sdk'
-      SonarCloudProject: 'OutSystems_mcp-python-sdk'
-      SonarCloudExclusionList: 'tests/**/*'
-      SonarCloudCoverageExclusionList: "'tests/**/*'"
+      SonarCloudProject: 'mcp-python-sdk'
+      SonarCloudExclusionList: "tests/**/*,examples/**/*,scripts/*"
+      SonarCloudCoverageExclusionList: "tests/**/*,examples/**/*,scripts/*"
       SkipIntegrationTests: true
       PythonVersion: 3.12
       PackageManager: "uv"

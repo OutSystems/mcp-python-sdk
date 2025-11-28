@@ -31,8 +31,8 @@ jobs:
     parameters:
       PackageName: 'mcp-python-sdk'
       SonarCloudProject: 'mcp-python-sdk'
-      SonarCloudExclusionList: 'tests/**/*'
-      SonarCloudCoverageExclusionList: "'tests/**/*'"
+      SonarCloudExclusionList: "tests/**/*,examples/**/*,scripts/*"
+      SonarCloudCoverageExclusionList: "tests/**/*,examples/**/*,scripts/*"
       SkipIntegrationTests: true
       PythonVersion: 3.12
       PackageManager: "uv"
