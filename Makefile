@@ -21,4 +21,7 @@ test: lint
 
 coverage:
 	@echo "🏠 Run coverage"
-	uv run pytest outsystems tests --cov=outsystems tests --cov-config .coveragerc --cov-report=html:coverage --cov-report=xml --cov-report=term
+	uv run coverage run -m pytest tests
+	uv run coverage report
+	uv run coverage html
+	uv run coverage xml
