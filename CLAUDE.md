@@ -5,11 +5,12 @@ This document contains critical information about working with this codebase. Fo
 ## Core Development Rules
 
 1. Package Management
-   - ONLY use uv, NEVER pip
-   - Installation: `uv add package`
-   - Running tools: `uv run tool`
-   - Upgrading: `uv add --dev package --upgrade-package package`
-   - FORBIDDEN: `uv pip install`, `@latest` syntax
+   - ONLY use Poetry, NEVER pip
+   - Installation: `poetry add package`
+   - Dev dependencies: `poetry add --group dev package`
+   - Running tools: `poetry run tool`
+   - Upgrading: `poetry update package`
+   - FORBIDDEN: `pip install`, manual dependency management
 
 2. Code Quality
    - Type hints required for all code
@@ -19,7 +20,7 @@ This document contains critical information about working with this codebase. Fo
    - Line length: 120 chars maximum
 
 3. Testing Requirements
-   - Framework: `uv run --frozen pytest`
+   - Framework: `poetry run pytest`
    - Async testing: use anyio, not asyncio
    - Coverage: test edge cases and errors
    - New features require tests
@@ -56,9 +57,9 @@ This document contains critical information about working with this codebase. Fo
 ## Code Formatting
 
 1. Ruff
-   - Format: `uv run --frozen ruff format .`
-   - Check: `uv run --frozen ruff check .`
-   - Fix: `uv run --frozen ruff check . --fix`
+   - Format: `poetry run ruff format .`
+   - Check: `poetry run ruff check .`
+   - Fix: `poetry run ruff check . --fix`
    - Critical issues:
      - Line length (88 chars)
      - Import sorting (I001)
@@ -69,7 +70,7 @@ This document contains critical information about working with this codebase. Fo
      - Imports: split into multiple lines
 
 2. Type Checking
-   - Tool: `uv run --frozen pyright`
+   - Tool: `poetry run pyright`
    - Requirements:
      - Explicit None checks for Optional
      - Type narrowing for strings
@@ -109,7 +110,7 @@ This document contains critical information about working with this codebase. Fo
    - Pytest:
      - If the tests aren't finding the anyio pytest mark, try adding PYTEST_DISABLE_PLUGIN_AUTOLOAD=""
        to the start of the pytest run command eg:
-       `PYTEST_DISABLE_PLUGIN_AUTOLOAD="" uv run --frozen pytest`
+       `PYTEST_DISABLE_PLUGIN_AUTOLOAD="" poetry run pytest`
 
 3. Best Practices
    - Check git status before commits
