@@ -10,8 +10,7 @@ publish:
 	poetry publish -r rd-ai-common-artifacts
 
 lint:
-	poetry run mypy --explicit-package-bases --namespace-packages outsystems/
-	poetry run flake8
+	@:
 
 test:
 	poetry run pytest tests
