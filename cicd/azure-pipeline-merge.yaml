@@ -22,7 +22,7 @@ resources:
   repositories:
     - repository: rd-ai-azure-pipeline-templates
       type: github
-      ref: refs/tags/v5
+      ref: refs/tags/v6.5.1
       name: OutSystems/rd-ai-azure-pipeline-templates
       endpoint: OutSystems
 
