@@ -153,10 +153,9 @@ addopts = """
     --color=yes
     --capture=fd
     --numprocesses auto
-    --import-mode=importlib
-    --cov=outsystems
+    --cov=src/mcp
+    --cov-report=xml
     --cov-report=term
-    --cov-report=term-missing
 """
 filterwarnings = [
     "error",
