@@ -6,7 +6,8 @@
     include:
       - src
       - tests
-      - build
+      - cicd
+      - scripts
       - .github
 
 pool:
@@ -31,6 +32,6 @@ jobs:
       PackageName: 'mcp-python-sdk'
       SonarCloudProject: 'mcp-python-sdk'
       SonarCloudExclusionList: 'tests/**/*'
-      SonarCloudCoverageExclusionList: "'tests/**/*, local_dev/*'"
+      SonarCloudCoverageExclusionList: "'tests/**/*'"
       SkipIntegrationTests: true
       PythonVersion: 3.12
