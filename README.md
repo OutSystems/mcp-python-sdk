@@ -94,19 +94,19 @@ The Model Context Protocol allows applications to provide context for LLMs in a 
 
 ### Adding MCP to your python project
 
-We recommend using [uv](https://docs.astral.sh/uv/) to manage your Python projects.
+We recommend using [Poetry](https://python-poetry.org/) to manage your Python projects.
 
-If you haven't created a uv-managed project yet, create one:
+If you haven't created a Poetry-managed project yet, create one:
 
    ```bash
-   uv init mcp-server-demo
+   poetry new mcp-server-demo
    cd mcp-server-demo
    ```
 
    Then add MCP to your project dependencies:
 
    ```bash
-   uv add "mcp[cli]"
+   poetry add "mcp[cli]"
    ```
 
 Alternatively, for projects using pip for dependencies:
@@ -117,10 +117,10 @@ pip install "mcp[cli]"
 
 ### Running the standalone MCP development tools
 
-To run the mcp command with uv:
+To run the mcp command with Poetry:
 
 ```bash
-uv run mcp
+poetry run mcp
 ```
 
 ## Quickstart
@@ -133,7 +133,7 @@ Let's create a simple MCP server that exposes a calculator tool and some data:
 FastMCP quickstart example.
 
 Run from the repository root:
-    uv run examples/snippets/servers/fastmcp_quickstart.py
+    poetry run python examples/snippets/servers/fastmcp_quickstart.py
 """
 
 from mcp.server.fastmcp import FastMCP
@@ -180,7 +180,7 @@ _Full example: [examples/snippets/servers/fastmcp_quickstart.py](https://github.
 You can install this server in [Claude Code](https://docs.claude.com/en/docs/claude-code/mcp) and interact with it right away. First, run the server:
 
 ```bash
-uv run --with mcp examples/snippets/servers/fastmcp_quickstart.py
+poetry run python examples/snippets/servers/fastmcp_quickstart.py
 ```
 
 Then add it to Claude Code:
@@ -722,7 +722,7 @@ Client usage:
 ```python
 """
 cd to the `examples/snippets` directory and run:
-    uv run completion-client
+    poetry run completion-client
 """
 
 import asyncio
@@ -734,9 +734,8 @@ from mcp.types import PromptReference, ResourceTemplateReference
 
 # Create server parameters for stdio connection
 server_params = StdioServerParameters(
-    command="uv",  # Using uv to run the server
+    command="poetry",  # Using poetry to run the server
     args=["run", "server", "completion", "stdio"],  # Server with completion support
-    env={"UV_INDEX": os.environ.get("UV_INDEX", "")},
 )
 
 
@@ -998,7 +997,7 @@ MCP servers can use authentication by providing an implementation of the `TokenV
 ```python
 """
 Run from the repository root:
-    uv run examples/snippets/servers/oauth_server.py
+    poetry run python examples/snippets/servers/oauth_server.py
 """
 
 from pydantic import AnyHttpUrl
@@ -1160,13 +1159,13 @@ _Full lifespan example: [examples/snippets/servers/lifespan_example.py](https://
 The fastest way to test and debug your server is with the MCP Inspector:
 
 ```bash
-uv run mcp dev server.py
+poetry run mcp dev server.py
 
 # Add dependencies
-uv run mcp dev server.py --with pandas --with numpy
+poetry run mcp dev server.py --with pandas --with numpy
 
 # Mount local code
-uv run mcp dev server.py --with-editable .
+poetry run mcp dev server.py --with-editable .
 ```
 
 ### Claude Desktop Integration
@@ -1174,14 +1173,14 @@ uv run mcp dev server.py --with-editable .
 Once your server is ready, install it in Claude Desktop:
 
 ```bash
-uv run mcp install server.py
+poetry run mcp install server.py
 
 # Custom name
-uv run mcp install server.py --name "My Analytics Server"
+poetry run mcp install server.py --name "My Analytics Server"
 
 # Environment variables
-uv run mcp install server.py -v API_KEY=abc123 -v DB_URL=postgres://...
-uv run mcp install server.py -f .env
+poetry run mcp install server.py -v API_KEY=abc123 -v DB_URL=postgres://...
+poetry run mcp install server.py -f .env
 ```
 
 ### Direct Execution
@@ -1194,7 +1193,7 @@ For advanced scenarios like custom deployments:
 
 This is the simplest way to run an MCP server directly.
 cd to the `examples/snippets` directory and run:
-    uv run direct-execution-server
+    poetry run direct-execution-server
     or
     python servers/direct_execution.py
 """
@@ -1227,10 +1226,10 @@ Run it with:
 ```bash
 python servers/direct_execution.py
 # or
-uv run mcp run servers/direct_execution.py
+poetry run mcp run servers/direct_execution.py
 ```
 
-Note that `uv run mcp run` or `uv run mcp dev` only supports server using FastMCP and not the low-level server variant.
+Note that `poetry run mcp run` or `poetry run mcp dev` only supports server using FastMCP and not the low-level server variant.
 
 ### Streamable HTTP Transport
 
@@ -1240,7 +1239,7 @@ Note that `uv run mcp run` or `uv run mcp dev` only supports server using FastMC
 ```python
 """
 Run from the repository root:
-    uv run examples/snippets/servers/streamable_config.py
+    poetry run python examples/snippets/servers/streamable_config.py
 """
 
 from mcp.server.fastmcp import FastMCP
@@ -1622,7 +1621,7 @@ For more control, you can use the low-level server implementation directly. This
 ```python
 """
 Run from the repository root:
-    uv run examples/snippets/servers/lowlevel/lifespan.py
+    poetry run python examples/snippets/servers/lowlevel/lifespan.py
 """
 
 from collections.abc import AsyncIterator
@@ -1739,7 +1738,7 @@ The lifespan API provides:
 ```python
 """
 Run from the repository root:
-uv run examples/snippets/servers/lowlevel/basic.py
+poetry run python examples/snippets/servers/lowlevel/basic.py
 """
 
 import asyncio
@@ -1808,7 +1807,7 @@ if __name__ == "__main__":
 _Full example: [examples/snippets/servers/lowlevel/basic.py](https://github.com/modelcontextprotocol/python-sdk/blob/main/examples/snippets/servers/lowlevel/basic.py)_
 <!-- /snippet-source -->
 
-Caution: The `uv run mcp run` and `uv run mcp dev` tool doesn't support low-level server.
+Caution: The `poetry run mcp run` and `poetry run mcp dev` tool doesn't support low-level server.
 
 #### Structured Output Support
 
@@ -1818,7 +1817,7 @@ The low-level server supports structured output for tools, allowing you to retur
 ```python
 """
 Run from the repository root:
-    uv run examples/snippets/servers/lowlevel/structured_output.py
+    poetry run python examples/snippets/servers/lowlevel/structured_output.py
 """
 
 import asyncio
@@ -1921,7 +1920,7 @@ For full control over the response including the `_meta` field (for passing data
 ```python
 """
 Run from the repository root:
-    uv run examples/snippets/servers/lowlevel/direct_call_tool_result.py
+    poetry run python examples/snippets/servers/lowlevel/direct_call_tool_result.py
 """
 
 import asyncio
@@ -2059,7 +2058,7 @@ from mcp.types import PaginatedRequestParams, Resource
 
 async def list_all_resources() -> None:
     """Fetch all resources using pagination."""
-    async with stdio_client(StdioServerParameters(command="uv", args=["run", "mcp-simple-pagination"])) as (
+    async with stdio_client(StdioServerParameters(command="poetry", args=["run", "mcp-simple-pagination"])) as (
         read,
         write,
     ):
@@ -2109,7 +2108,7 @@ The SDK provides a high-level client interface for connecting to MCP servers usi
 ```python
 """
 cd to the `examples/snippets/clients` directory and run:
-    uv run client
+    poetry run client
 """
 
 import asyncio
@@ -2123,9 +2122,8 @@ from mcp.shared.context import RequestContext
 
 # Create server parameters for stdio connection
 server_params = StdioServerParameters(
-    command="uv",  # Using uv to run the server
+    command="poetry",  # Using poetry to run the server
     args=["run", "server", "fastmcp_quickstart", "stdio"],  # We're already in snippets dir
-    env={"UV_INDEX": os.environ.get("UV_INDEX", "")},
 )
 
 
@@ -2201,7 +2199,7 @@ Clients can also connect using [Streamable HTTP transport](https://modelcontextp
 ```python
 """
 Run from the repository root:
-    uv run examples/snippets/clients/streamable_basic.py
+    poetry run python examples/snippets/clients/streamable_basic.py
 """
 
 import asyncio
@@ -2241,7 +2239,7 @@ When building MCP clients, the SDK provides utilities to help display human-read
 ```python
 """
 cd to the `examples/snippets` directory and run:
-    uv run display-utilities-client
+    poetry run display-utilities-client
 """
 
 import asyncio
@@ -2253,9 +2251,8 @@ from mcp.shared.metadata_utils import get_display_name
 
 # Create server parameters for stdio connection
 server_params = StdioServerParameters(
-    command="uv",  # Using uv to run the server
+    command="poetry",  # Using poetry to run the server
     args=["run", "server", "fastmcp_quickstart", "stdio"],
-    env={"UV_INDEX": os.environ.get("UV_INDEX", "")},
 )
 
 
@@ -2330,7 +2327,7 @@ To spin up RS server locally, see
     examples/servers/simple-auth/README.md
 
 cd to the `examples/snippets` directory and run:
-    uv run oauth-client
+    poetry run oauth-client
 """
 
 import asyncio
