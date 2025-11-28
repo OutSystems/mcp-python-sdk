@@ -1,19 +1,24 @@
 ﻿.PHONY: install build publish lint test integration_test coverage
 
 install:
-	poetry install
+	@echo "🏠 Install project"
+	uv sync
 
 build:
-	poetry build
+	@echo "🏠 Build project"
+	uv build
 
 publish:
-	poetry publish -r rd-ai-common-artifacts
+	@echo "🏠 Publish project"
+	uv publish --index rd-ai-common-artifacts
 
 lint:
 	@:
 
-test:
-	poetry run pytest tests
+test: lint
+	@echo "🏠 Run tests"
+	uv run pytest tests --verbose
 
 coverage:
-	poetry run pytest --cov=outsystems tests --cov-config .coveragerc  --cov-report=html:coverage --cov-report=xml
+	@echo "🏠 Run coverage"
+	uv run pytest outsystems tests --cov=outsystems tests --cov-config .coveragerc --cov-report=html:coverage --cov-report=xml --cov-report=term
