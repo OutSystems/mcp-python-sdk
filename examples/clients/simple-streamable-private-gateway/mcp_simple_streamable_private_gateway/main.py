@@ -13,7 +13,6 @@ from datetime import timedelta
 from typing import Any
 
 from anyio.streams.memory import MemoryObjectReceiveStream, MemoryObjectSendStream
-
 from mcp.client.session import ClientSession
 from mcp.client.sse import sse_client
 from mcp.client.streamable_http import streamablehttp_client
@@ -22,7 +21,7 @@ from mcp.shared.message import SessionMessage
 
 class SimpleStreamablePrivateGateway:
     """Simple MCP private gateway client supporting StreamableHTTP and SSE transports.
-    
+
     This client demonstrates how to use custom extensions (e.g., SNI hostname) for
     private gateway connectivity with both transport types.
     """
@@ -191,26 +190,26 @@ def get_user_input():
     print("🚀 Simple Streamable Private Gateway")
     print("\n📝 Server Configuration")
     print("=" * 50)
-    
+
     # Get server port
     server_port = input("Server port [8081]: ").strip() or "8081"
-    
+
     # Get server hostname
     server_hostname = input("Server hostname [mcp.deepwiki.com]: ").strip() or "mcp.deepwiki.com"
-    
+
     # Get transport type
     print("\nTransport type:")
     print("  1. streamable-http (default)")
     print("  2. sse")
     transport_choice = input("Select transport [1]: ").strip() or "1"
-    
+
     if transport_choice == "2":
         transport_type = "sse"
     else:
         transport_type = "streamable-http"
-    
+
     print("=" * 50)
-    
+
     return server_port, server_hostname, transport_type
 
 
@@ -219,7 +218,7 @@ async def main():
     try:
         # Get configuration from user input
         server_port, server_hostname, transport_type = get_user_input()
-        
+
         # Set URL endpoint based on transport type
         # StreamableHTTP servers typically use /mcp, SSE servers use /sse
         endpoint = "/mcp" if transport_type == "streamable-http" else "/sse"
@@ -232,7 +231,7 @@ async def main():
         # Start connection flow
         client = SimpleStreamablePrivateGateway(server_url, server_hostname, transport_type)
         await client.connect()
-        
+
     except KeyboardInterrupt:
         print("\n\n👋 Goodbye!")
     except EOFError:
