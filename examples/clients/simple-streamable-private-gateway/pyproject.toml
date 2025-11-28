@@ -1,7 +1,7 @@
 [project]
 name = "mcp-simple-streamable-private-gateway"
 version = "0.1.0"
-description = "A simple streamable private gateway client for MCP servers without authentication"
+description = "A simple streamable private gateway client for MCP servers with optional OAuth authentication"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Anthropic" }]
