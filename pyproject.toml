@@ -38,11 +38,11 @@ dependencies = [
     "typing-inspection>=0.4.1",
     "typer>=0.16.0",
     "python-dotenv>=1.0.0",
+    "websockets>=15.0.1",
 ]
 
 [project.optional-dependencies]
 rich = ["rich>=13.9.4"]
-ws = ["websockets>=15.0.1"]
 
 [project.scripts]
 mcp = "mcp.cli:app"

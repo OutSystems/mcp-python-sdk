@@ -777,14 +777,12 @@ dependencies = [
     { name = "typing-extensions" },
     { name = "typing-inspection" },
     { name = "uvicorn", marker = "sys_platform != 'emscripten'" },
+    { name = "websockets" },
 ]
 
 [package.optional-dependencies]
 rich = [
     { name = "rich" },
-]
-ws = [
-    { name = "websockets" },
 ]
 
 [package.dev-dependencies]
@@ -827,9 +825,9 @@ requires-dist = [
     { name = "typing-extensions", specifier = ">=4.9.0" },
     { name = "typing-inspection", specifier = ">=0.4.1" },
     { name = "uvicorn", marker = "sys_platform != 'emscripten'", specifier = ">=0.31.1" },
-    { name = "websockets", marker = "extra == 'ws'", specifier = ">=15.0.1" },
+    { name = "websockets", specifier = ">=15.0.1" },
 ]
-provides-extras = ["rich", "ws"]
+provides-extras = ["rich"]
 
 [package.metadata.requires-dev]
 dev = [
