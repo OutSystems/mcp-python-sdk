@@ -759,6 +759,7 @@ wheels = [
 
 [[package]]
 name = "mcp"
+version = "0.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "anyio" },
@@ -768,16 +769,13 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "pyjwt", extra = ["crypto"] },
-    { name = "python-dotenv" },
     { name = "python-multipart" },
     { name = "pywin32", marker = "sys_platform == 'win32'" },
     { name = "sse-starlette" },
     { name = "starlette" },
-    { name = "typer" },
     { name = "typing-extensions" },
     { name = "typing-inspection" },
     { name = "uvicorn", marker = "sys_platform != 'emscripten'" },
-    { name = "websockets" },
 ]
 
 [package.optional-dependencies]
@@ -792,12 +790,16 @@ dev = [
     { name = "inline-snapshot" },
     { name = "pyright" },
     { name = "pytest" },
+    { name = "pytest-cov" },
     { name = "pytest-examples" },
     { name = "pytest-flakefinder" },
     { name = "pytest-pretty" },
     { name = "pytest-xdist" },
+    { name = "python-dotenv" },
     { name = "ruff" },
     { name = "trio" },
+    { name = "typer" },
+    { name = "websockets" },
 ]
 docs = [
     { name = "mkdocs" },
@@ -815,17 +817,14 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.11.0,<3.0.0" },
     { name = "pydantic-settings", specifier = ">=2.5.2" },
     { name = "pyjwt", extras = ["crypto"], specifier = ">=2.10.1" },
-    { name = "python-dotenv", specifier = ">=1.0.0" },
     { name = "python-multipart", specifier = ">=0.0.9" },
     { name = "pywin32", marker = "sys_platform == 'win32'", specifier = ">=310" },
     { name = "rich", marker = "extra == 'rich'", specifier = ">=13.9.4" },
     { name = "sse-starlette", specifier = ">=1.6.1" },
     { name = "starlette", specifier = ">=0.27" },
-    { name = "typer", specifier = ">=0.16.0" },
     { name = "typing-extensions", specifier = ">=4.9.0" },
     { name = "typing-inspection", specifier = ">=0.4.1" },
     { name = "uvicorn", marker = "sys_platform != 'emscripten'", specifier = ">=0.31.1" },
-    { name = "websockets", specifier = ">=15.0.1" },
 ]
 provides-extras = ["rich"]
 
@@ -836,12 +835,16 @@ dev = [
     { name = "inline-snapshot", specifier = ">=0.23.0" },
     { name = "pyright", specifier = ">=1.1.400" },
     { name = "pytest", specifier = ">=8.3.4" },
+    { name = "pytest-cov", specifier = ">=6.2.1" },
     { name = "pytest-examples", specifier = ">=0.0.14" },
     { name = "pytest-flakefinder", specifier = ">=1.1.0" },
     { name = "pytest-pretty", specifier = ">=1.2.0" },
     { name = "pytest-xdist", specifier = ">=3.6.1" },
+    { name = "python-dotenv", specifier = ">=1.0.0" },
     { name = "ruff", specifier = ">=0.8.5" },
     { name = "trio", specifier = ">=0.26.2" },
+    { name = "typer", specifier = ">=0.16.0" },
+    { name = "websockets", specifier = ">=15.0.1" },
 ]
 docs = [
     { name = "mkdocs", specifier = ">=1.6.1" },
@@ -1766,6 +1769,20 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/a3/5c/00a0e072241553e1a7496d638deababa67c5058571567b92a7eaa258397c/pytest-8.4.2.tar.gz", hash = "sha256:86c0d0b93306b961d58d62a4db4879f27fe25513d4b969df351abdddb3c30e01", size = 1519618, upload-time = "2025-09-04T14:34:22.711Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a8/a4/20da314d277121d6534b3a980b29035dcd51e6744bd79075a6ce8fa4eb8d/pytest-8.4.2-py3-none-any.whl", hash = "sha256:872f880de3fc3a5bdc88a11b39c9710c3497a547cfa9320bc3c5e62fbf272e79", size = 365750, upload-time = "2025-09-04T14:34:20.226Z" },
+]
+
+[[package]]
+name = "pytest-cov"
+version = "7.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "coverage", extra = ["toml"] },
+    { name = "pluggy" },
+    { name = "pytest" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5e/f7/c933acc76f5208b3b00089573cf6a2bc26dc80a8aece8f52bb7d6b1855ca/pytest_cov-7.0.0.tar.gz", hash = "sha256:33c97eda2e049a0c5298e91f519302a1334c26ac65c1a483d6206fd458361af1", size = 54328, upload-time = "2025-09-09T10:57:02.113Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ee/49/1377b49de7d0c1ce41292161ea0f721913fa8722c19fb9c1e3aa0367eecb/pytest_cov-7.0.0-py3-none-any.whl", hash = "sha256:3b8e9558b16cc1479da72058bdecf8073661c7f57f7d3c5f22a1c23507f2d861", size = 22424, upload-time = "2025-09-09T10:57:00.695Z" },
 ]
 
 [[package]]
