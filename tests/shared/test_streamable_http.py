@@ -210,7 +210,12 @@ class ServerTest(Server):
                 )
 
                 # Return the sampling result in the tool response
-                response = sampling_result.content.text if sampling_result.content.type == "text" else None
+                content = (
+                    sampling_result.content
+                    if not isinstance(sampling_result.content, list)
+                    else sampling_result.content[0]
+                )
+                response = content.text if content.type == "text" else None  # type: ignore[attr-defined]
                 return [
                     TextContent(
                         type="text",
@@ -1223,7 +1228,12 @@ async def test_streamablehttp_server_sampling(basic_server: None, basic_server_u
         nonlocal sampling_callback_invoked, captured_message_params
         sampling_callback_invoked = True
         captured_message_params = params
-        message_received = params.messages[0].content.text if params.messages[0].content.type == "text" else None
+        content = (
+            params.messages[0].content
+            if not isinstance(params.messages[0].content, list)
+            else params.messages[0].content[0]
+        )
+        message_received = content.text if content.type == "text" else None  # type: ignore[attr-defined]
 
         return types.CreateMessageResult(
             role="assistant",
