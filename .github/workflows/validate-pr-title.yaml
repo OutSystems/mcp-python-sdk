@@ -8,4 +8,4 @@ on:
 
 jobs:
   build:
-    uses: OutSystems/rd.github-reusable-workflows/.github/workflows/validate-pr-title.yaml@v1.0.0
+    uses: OutSystems/rd.github-reusable-workflows/.github/workflows/validate-pr-title.yaml@9d497d1c5bc6e355aa8f4663539e6b75c212f6b4

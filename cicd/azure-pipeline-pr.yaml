@@ -26,7 +26,7 @@ resources:
 
 
 jobs:
-  - template: python/packages/new-azure-pipeline-pr.yml@rd-ai-azure-pipeline-templates@v6.5.1
+  - template: python/packages/new-azure-pipeline-pr.yml@rd-ai-azure-pipeline-templates
     parameters:
       PackageName: 'mcp-python-sdk'
       SonarCloudProject: 'OutSystems_mcp-python-sdk'
