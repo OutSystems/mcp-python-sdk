@@ -1,6 +1,6 @@
 [project]
 name = "mcp"
-dynamic = ["version"]
+version = "0.0.0"  # Placeholder, will be overridden by uv-dynamic-versioning during build
 description = "Model Context Protocol SDK"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -36,19 +36,20 @@ dependencies = [
     "pyjwt[crypto]>=2.10.1",
     "typing-extensions>=4.9.0",
     "typing-inspection>=0.4.1",
+    "typer>=0.16.0",
+    "python-dotenv>=1.0.0",
+    "websockets>=15.0.1",
 ]
 
 [project.optional-dependencies]
 rich = ["rich>=13.9.4"]
-cli = ["typer>=0.16.0", "python-dotenv>=1.0.0"]
-ws = ["websockets>=15.0.1"]
 
 [project.scripts]
-mcp = "mcp.cli:app [cli]"
+mcp = "mcp.cli:app"
 
 [tool.uv]
 default-groups = ["dev", "docs"]
-required-version = ">=0.9.5"
+required-version = ">=0.8.4"
 
 [dependency-groups]
 dev = [
