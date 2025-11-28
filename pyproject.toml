@@ -1,6 +1,6 @@
 [project]
 name = "mcp"
-dynamic = ["version"]
+version = "0.0.0"  # Placeholder, will be overridden by uv-dynamic-versioning during build
 description = "Model Context Protocol SDK"
 readme = "README.md"
 requires-python = ">=3.10"
