@@ -42,7 +42,7 @@ dependencies = [
 rich = ["rich>=13.9.4"]
 
 [project.scripts]
-mcp = "mcp.cli:app"
+mcp-python-sdk = "mcp.cli:app"
 
 [tool.uv]
 default-groups = ["dev", "docs"]
@@ -143,7 +143,7 @@ max-statements = 102                                       # Default is 50
 members = ["examples/clients/*", "examples/servers/*", "examples/snippets"]
 
 [tool.uv.sources]
-mcp = { workspace = true }
+mcp-python-sdk = { workspace = true }
 
 [tool.pytest.ini_options]
 log_cli = true
