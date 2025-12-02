@@ -1,0 +1,11 @@
+﻿name: Validate pull request labels
+
+
+on:
+  pull_request:
+    types: [labeled, unlabeled, synchronize]
+
+
+jobs:
+  check-label:
+    uses: OutSystems/rd.github-reusable-workflows/.github/workflows/validate-pr-labels.yaml@9d497d1c5bc6e355aa8f4663539e6b75c212f6b4
