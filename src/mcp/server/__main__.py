@@ -29,7 +29,7 @@ async def receive_loop(session: ServerSession):
 
 
 async def main():
-    version = importlib.metadata.version("mcp")
+    version = importlib.metadata.version("mcp_python-sdk")
     async with stdio_server() as (read_stream, write_stream):
         async with (
             ServerSession(
