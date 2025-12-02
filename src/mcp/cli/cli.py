@@ -212,7 +212,7 @@ def _import_server(file: Path, server_object: str | None = None):  # pragma: no 
 def version() -> None:  # pragma: no cover
     """Show the MCP version."""
     try:
-        version = importlib.metadata.version("mcp")
+        version = importlib.metadata.version("mcp_python-sdk")
         print(f"MCP version {version}")
     except importlib.metadata.PackageNotFoundError:
         print("MCP version unknown (package not installed)")

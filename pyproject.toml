@@ -42,7 +42,7 @@ dependencies = [
 rich = ["rich>=13.9.4"]
 
 [project.scripts]
-mcp-python-sdk = "mcp.cli:app"
+mcp-python-sdk = "mcp-python-sdk.cli:app"
 
 [tool.uv]
 default-groups = ["dev", "docs"]
