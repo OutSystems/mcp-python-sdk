@@ -17,6 +17,5 @@ Conventions: <jira-issue>: <subject>
 <!-- What are the consequences of the changes and possible implications in clients -->
 - [ ] Breaking Change
   - [ ] Behavioral breaking change
-  - [ ] Breaks existent APIs  
 - [ ] Refactor (big refactor on a sensitive asset )
 - [ ] Requires revision on public documentation
