@@ -1,13 +1,10 @@
-# Simple Streamable Private Gateway Example
+# Simple Private Gateway Example
 
-A demonstration of how to use the MCP Python SDK as a streamable private gateway with optional authentication (OAuth or API Key) over streamable HTTP or SSE transport with custom extensions for private gateway connectivity (SNI hostname support).
+A demonstration of how to use the MCP Python SDK as a private gateway with optional API key authentication over streamable HTTP or SSE transport with custom extensions for private gateway connectivity (SNI hostname support).
 
 ## Features
 
-- Multiple authentication options:
-  - OAuth 2.0 authentication with PKCE
-  - API Key authentication (Bearer token or custom header)
-  - No authentication
+- Optional API Key authentication (Bearer token or custom header)
 - Supports both StreamableHTTP and SSE transports
 - Custom extensions for private gateway (SNI hostname) - **Both transports**
 - Can combine authentication + extensions (for authenticated private gateway)
@@ -17,7 +14,7 @@ A demonstration of how to use the MCP Python SDK as a streamable private gateway
 ## Installation
 
 ```bash
-cd examples/clients/simple-streamable-private-gateway
+cd examples/clients/simple-private-gateway
 uv sync --reinstall 
 ```
 
@@ -25,16 +22,12 @@ uv sync --reinstall
 
 ### 1. Start an MCP server
 
-You can use any MCP server with or without authentication. For example:
+You can use any MCP server. For example:
 
 ```bash
 # Example without authentication - StreamableHTTP transport
 cd examples/servers/simple-tool
 uv run mcp-simple-tool --transport streamable-http --port 8081
-
-# Example with OAuth authentication
-cd examples/servers/simple-auth
-uv run mcp-simple-auth --transport streamable-http --port 3001
 
 # Or with SSE transport
 cd examples/servers/simple-tool
@@ -45,16 +38,16 @@ uv run mcp-simple-tool --transport sse --port 8081
 
 The client will interactively prompt you for:
 
-- Server port
-- Server hostname (for SNI)
+- Server URL (or press Enter to configure port/protocol/hostname separately)
+  - If you provide a full URL, it will be used directly
+  - If you press Enter, you'll be prompted for: port, protocol, and hostname (for SNI)
 - Transport type (streamable-http or sse)
-- Authentication type (none, OAuth, or API Key)
-- For OAuth: Client metadata URL (optional)
+- Authentication type (none or API Key)
 - For API Key: API key value, header name, and format (Bearer or direct)
 
 ```bash
 # Run the client interactively
-uv run mcp-simple-streamable-private-gateway
+uv run mcp-simple-private-gateway
 ```
 
 Follow the prompts to configure your connection.
@@ -72,11 +65,13 @@ The client provides several commands:
 ### Example 1: Private Gateway without Authentication (StreamableHTTP)
 
 ```markdown
-🚀 Simple Streamable Private Gateway
+🚀 Simple Private Gateway
 
 📝 Server Configuration
 ==================================================
+Server URL [https://localhost:8081]: 
 Server port [8081]: 8081
+Protocol [https]: https
 Server hostname [mcp.deepwiki.com]: mcp.deepwiki.com
 
 Transport type:
@@ -86,8 +81,7 @@ Select transport [1]: 1
 
 Authentication:
   1. No authentication (default)
-  2. OAuth authentication
-  3. API Key authentication
+  2. API Key authentication
 Select authentication [1]: 1
 ==================================================
 
@@ -123,69 +117,16 @@ mcp> quit
 👋 Goodbye!
 ```
 
-### Example 2: Private Gateway with OAuth Authentication (StreamableHTTP)
+### Example 2: SSE Transport without Authentication
 
 ```markdown
-🚀 Simple Streamable Private Gateway
+🚀 Simple Private Gateway
 
 📝 Server Configuration
 ==================================================
-Server port [8081]: 3001
-Server hostname [mcp.deepwiki.com]: auth.mcp.example.com
-
-Transport type:
-  1. streamable-http (default)
-  2. sse
-Select transport [1]: 1
-
-Authentication:
-  1. No authentication (default)
-  2. OAuth authentication
-  3. API Key authentication
-Select authentication [1]: 2
-Client metadata URL (optional, press Enter to skip): 
-==================================================
-
-🔗 Connecting to: http://localhost:3001/mcp
-📡 Server hostname: auth.mcp.example.com
-🚀 Transport type: streamable-http
-🔐 Authentication: OAuth
-
-🔐 Setting up OAuth authentication...
-🖥️  Started callback server on http://localhost:3030
-📡 Opening StreamableHTTP transport connection with extensions and auth...
-Opening browser for authorization: http://localhost:3001/authorize?...
-⏳ Waiting for authorization callback...
-🤝 Initializing MCP session...
-⚡ Starting session initialization...
-✨ Session initialization complete!
-
-✅ Connected to MCP server at http://localhost:3001/mcp
-Session ID: xyz789...
-
-🎯 Interactive MCP Client (Private Gateway with Auth)
-Commands:
-  list - List available tools
-  call <tool_name> [args] - Call a tool
-  quit - Exit the client
-
-mcp> list
-📋 Available tools:
-1. secure-echo
-   Description: Authenticated echo service
-
-mcp> quit
-👋 Goodbye!
-```
-
-### Example 3: SSE Transport without Authentication
-
-```markdown
-🚀 Simple Streamable Private Gateway
-
-📝 Server Configuration
-==================================================
+Server URL [https://localhost:8081]: 
 Server port [8081]: 8081
+Protocol [https]: https
 Server hostname [mcp.deepwiki.com]: mcp.deepwiki.com
 
 Transport type:
@@ -195,8 +136,7 @@ Select transport [1]: 2
 
 Authentication:
   1. No authentication (default)
-  2. OAuth authentication
-  3. API Key authentication
+  2. API Key authentication
 Select authentication [1]: 1
 ==================================================
 
@@ -227,14 +167,16 @@ mcp> quit
 👋 Goodbye!
 ```
 
-### Example 4: API Key Authentication with Bearer Token (StreamableHTTP)
+### Example 3: API Key Authentication with Bearer Token (StreamableHTTP)
 
 ```markdown
-🚀 Simple Streamable Private Gateway
+🚀 Simple Private Gateway
 
 📝 Server Configuration
 ==================================================
+Server URL [https://localhost:8081]: 
 Server port [8081]: 8081
+Protocol [https]: https
 Server hostname [mcp.deepwiki.com]: api.mcp.example.com
 
 Transport type:
@@ -244,9 +186,8 @@ Select transport [1]: 1
 
 Authentication:
   1. No authentication (default)
-  2. OAuth authentication
-  3. API Key authentication
-Select authentication [1]: 3
+  2. API Key authentication
+Select authentication [1]: 2
 Enter API key: sk-1234567890abcdef
 
 API Key format:
@@ -286,14 +227,16 @@ mcp> quit
 👋 Goodbye!
 ```
 
-### Example 5: API Key Authentication with Custom Header (SSE)
+### Example 4: API Key Authentication with Custom Header (SSE)
 
 ```markdown
-🚀 Simple Streamable Private Gateway
+🚀 Simple Private Gateway
 
 📝 Server Configuration
 ==================================================
+Server URL [https://localhost:8081]: 
 Server port [8081]: 8082
+Protocol [https]: https
 Server hostname [mcp.deepwiki.com]: custom.mcp.example.com
 
 Transport type:
@@ -303,9 +246,8 @@ Select transport [1]: 2
 
 Authentication:
   1. No authentication (default)
-  2. OAuth authentication
-  3. API Key authentication
-Select authentication [1]: 3
+  2. API Key authentication
+Select authentication [1]: 2
 Enter API key: my-secret-api-key-123
 
 API Key format:
@@ -349,13 +291,17 @@ mcp> quit
 
 The client uses interactive prompts for configuration. You'll be asked to provide:
 
-- **Server port**: The port where your MCP server is running (default: 8081)
-- **Server hostname**: The hostname for SNI (Server Name Indication) used in private gateway setup (default: mcp.deepwiki.com)
+- **Server URL**: The full URL of your MCP server (default: https://localhost:8081)
+  - If you provide a URL, it will be used directly
+  - If you press Enter (empty), you'll be prompted for individual components:
+    - **Server port**: The port where your MCP server is running (default: 8081)
+    - **Protocol**: The protocol to use (default: https)
+    - **Server hostname**: The hostname for SNI (Server Name Indication) used in private gateway setup (default: mcp.deepwiki.com)
 - **Transport type**: Choose between `streamable-http` or `sse` (default: streamable-http)
+  - StreamableHTTP servers typically use `/mcp` endpoint
+  - SSE servers typically use `/sse` endpoint
 - **Authentication**: Choose authentication method (default: no authentication)
   - **None**: No authentication
-  - **OAuth**: OAuth 2.0 with PKCE
-    - **Client metadata URL**: Optional URL for OAuth client metadata
   - **API Key**: API key-based authentication
     - **API Key**: Your API key value
     - **Format**: Bearer token (Authorization: Bearer <key>) or custom header
@@ -366,7 +312,5 @@ The client uses interactive prompts for configuration. You'll be asked to provid
 This client supports multiple scenarios:
 
 1. **Private Gateway without Auth**: Use custom SNI hostname for HTTPS private gateway connectivity
-2. **Private Gateway with OAuth**: Combine OAuth 2.0 authentication with private gateway extensions
-3. **Private Gateway with API Key**: Use API key authentication (Bearer or custom header) with private gateway
-4. **Standard Server with Auth**: Use OAuth or API Key authentication without private gateway extensions
-5. **Both Transports**: Works with both StreamableHTTP and SSE transports in all scenarios
+2. **Private Gateway with API Key**: Use API key authentication (Bearer or custom header) with private gateway
+3. **Both Transports**: Works with both StreamableHTTP and SSE transports in all scenarios

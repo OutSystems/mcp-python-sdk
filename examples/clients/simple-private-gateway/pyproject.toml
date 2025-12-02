@@ -1,11 +1,11 @@
 [project]
-name = "mcp-simple-streamable-private-gateway"
+name = "mcp-simple-private-gateway"
 version = "0.1.0"
-description = "A simple streamable private gateway client for MCP servers with optional OAuth authentication"
+description = "A simple private gateway client for MCP servers with optional API key authentication"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Anthropic" }]
-keywords = ["mcp", "client", "streamable", "private", "gateway"]
+keywords = ["mcp", "client", "private", "gateway"]
 license = { text = "MIT" }
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -20,17 +20,17 @@ dependencies = [
 ]
 
 [project.scripts]
-mcp-simple-streamable-private-gateway = "mcp_simple_streamable_private_gateway.main:cli"
+mcp-simple-private-gateway = "mcp_simple_private_gateway.main:cli"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["mcp_simple_streamable_private_gateway"]
+packages = ["mcp_simple_private_gateway"]
 
 [tool.pyright]
-include = ["mcp_simple_streamable_private_gateway"]
+include = ["mcp_simple_private_gateway"]
 venvPath = "."
 venv = ".venv"
 
