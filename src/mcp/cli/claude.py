@@ -11,7 +11,7 @@ from mcp.server.fastmcp.utilities.logging import get_logger
 
 logger = get_logger(__name__)
 
-MCP_PACKAGE = "mcp-python-sdk[cli]"
+MCP_PACKAGE = "mcp[cli]"
 
 
 def get_claude_config_path() -> Path | None:  # pragma: no cover

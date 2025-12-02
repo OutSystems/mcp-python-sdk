@@ -56,14 +56,14 @@ def test_build_uv_command_adds_editable_and_packages():
         "uv",
         "run",
         "--with",
-        "mcp-python-sdk",
+        "mcp",
         "--with-editable",
         str(test_path),  # Use str() to match what the function does
         "--with",
         "package1",
         "--with",
         "package2",
-        "mcp-python-sdk",
+        "mcp",
         "run",
         "foo.py",
     ]
