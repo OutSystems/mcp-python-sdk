@@ -70,7 +70,7 @@ def _build_uv_command(
     """Build the uv run command that runs an MCP server through mcp run."""
     cmd = ["uv"]
 
-    cmd.extend(["run", "--with", "mcp"])
+    cmd.extend(["run", "--with", "mcp-python-sdk"])
 
     if with_editable:
         cmd.extend(["--with-editable", str(with_editable)])
@@ -212,7 +212,7 @@ def _import_server(file: Path, server_object: str | None = None):  # pragma: no 
 def version() -> None:  # pragma: no cover
     """Show the MCP version."""
     try:
-        version = importlib.metadata.version("mcp_python-sdk")
+        version = importlib.metadata.version("mcp-python-sdk")
         print(f"MCP version {version}")
     except importlib.metadata.PackageNotFoundError:
         print("MCP version unknown (package not installed)")
