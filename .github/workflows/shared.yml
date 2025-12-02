@@ -57,9 +57,7 @@ jobs:
 
       - name: Run pytest with coverage
         run: |
-          uv run --frozen --no-sync coverage run -m pytest
-          uv run --frozen --no-sync coverage combine
-          uv run --frozen --no-sync coverage report
+          make coverage
 
   readme-snippets:
     runs-on: ubuntu-latest
