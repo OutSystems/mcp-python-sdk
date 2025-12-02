@@ -7,5 +7,5 @@ from mcp.types import Icon
 from .server import Context, FastMCP
 from .utilities.types import Audio, Image
 
-__version__ = version("mcp_python-sdk")
+__version__ = version("mcp")
 __all__ = ["FastMCP", "Context", "Image", "Audio", "Icon"]
