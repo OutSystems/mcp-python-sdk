@@ -70,7 +70,7 @@ def _build_uv_command(
     """Build the uv run command that runs an MCP server through mcp run."""
     cmd = ["uv"]
 
-    cmd.extend(["run", "--with", "mcp-python-sdk"])
+    cmd.extend(["run", "--with", "mcp"])
 
     if with_editable:
         cmd.extend(["--with-editable", str(with_editable)])
