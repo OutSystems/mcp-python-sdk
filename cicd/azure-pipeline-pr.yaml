@@ -1,4 +1,4 @@
-pr:
+﻿pr:
   paths:
     exclude:
       - .idea
