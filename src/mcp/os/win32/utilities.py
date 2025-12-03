@@ -19,7 +19,6 @@ logger = logging.getLogger("client.stdio.win32")
 
 # Windows-specific imports for Job Objects
 if sys.platform == "win32":
-    import pywintypes
     import win32api
     import win32con
     import win32job
@@ -28,7 +27,6 @@ else:
     win32api = None
     win32con = None
     win32job = None
-    pywintypes = None
 
 JobHandle = int
 
@@ -126,6 +124,11 @@ class FallbackProcess:
     def pid(self) -> int:
         """Return the process ID."""
         return self.popen.pid
+
+    @property
+    def returncode(self) -> int | None:
+        """Return the process exit code (None if still running)."""
+        return self.popen.returncode
 
 
 # ------------------------
@@ -238,11 +241,17 @@ def _create_job_object() -> int | None:
         return None
 
     try:
-        job = win32job.CreateJobObject(None, "")
-        extended_info = win32job.QueryInformationJobObject(job, win32job.JobObjectExtendedLimitInformation)
+        job: JobHandle = win32job.CreateJobObject(None, "")  # type: ignore[arg-type]
+        extended_info = win32job.QueryInformationJobObject(  # type: ignore[misc]
+            job, win32job.JobObjectExtendedLimitInformation
+        )
 
         extended_info["BasicLimitInformation"]["LimitFlags"] |= win32job.JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
-        win32job.SetInformationJobObject(job, win32job.JobObjectExtendedLimitInformation, extended_info)
+        win32job.SetInformationJobObject(  # pyright: ignore[reportUnknownMemberType]
+            job,
+            win32job.JobObjectExtendedLimitInformation,
+            extended_info,  # pyright: ignore[reportUnknownArgumentType]
+        )
         return job
     except Exception as e:
         logger.warning(f"Failed to create Job Object for process tree management: {e}")
@@ -269,7 +278,7 @@ def _maybe_assign_process_to_job(process: Process | FallbackProcess, job: JobHan
 
         try:
             win32job.AssignProcessToJobObject(job, process_handle)
-            process._job_object = job
+            process._job_object = job  # type: ignore[attr-defined]
         finally:
             win32api.CloseHandle(process_handle)
     except Exception as e:
@@ -295,7 +304,7 @@ async def terminate_windows_process_tree(process: Process | FallbackProcess, tim
     job = getattr(process, "_job_object", None)
     if job and win32job:
         try:
-            win32job.TerminateJobObject(job, 1)
+            win32job.TerminateJobObject(job, 1)  # type: ignore[misc]
         except Exception:
             # Job might already be terminated
             pass
