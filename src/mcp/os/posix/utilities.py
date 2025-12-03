@@ -29,20 +29,20 @@ async def terminate_posix_process_tree(process: Process, timeout_seconds: float 
         return
 
     try:
-        pgid = os.getpgid(pid)
-        os.killpg(pgid, signal.SIGTERM)
+        pgid = os.getpgid(pid)  # type: ignore[attr-defined]
+        os.killpg(pgid, signal.SIGTERM)  # type: ignore[attr-defined]
 
         with anyio.move_on_after(timeout_seconds):
             while True:
                 try:
                     # Check if process group still exists (signal 0 = check only)
-                    os.killpg(pgid, 0)
+                    os.killpg(pgid, 0)  # type: ignore[attr-defined]
                     await anyio.sleep(0.1)
                 except ProcessLookupError:
                     return
 
         try:
-            os.killpg(pgid, signal.SIGKILL)
+            os.killpg(pgid, signal.SIGKILL)  # type: ignore[attr-defined]
         except ProcessLookupError:
             pass
 
