@@ -105,7 +105,7 @@ class SimplePrivateGateway:
                     timeout=60,
                 ) as (read_stream, write_stream):
                     await self._run_session(read_stream, write_stream, None)
-                
+
             else:
                 if auth:
                     print("📡 Opening StreamableHTTP transport connection with extensions and API key auth...")
@@ -113,7 +113,7 @@ class SimplePrivateGateway:
                     print("📡 Opening StreamableHTTP transport connection with extensions...")
                 # Note: terminate_on_close=False prevents SSL handshake failures during exit
                 # Some servers may not handle session termination gracefully over SSL
-                
+
                 async with streamablehttp_client(
                     url=self.server_url,
                     headers=headers,
@@ -260,7 +260,7 @@ def get_user_input():
     # Get server url
     server_url = input("Server URL [https://localhost:8081]: ").strip() or None
     server_port = None
-    server_hostname = None    
+    server_hostname = None
 
     # Get transport type
     print("\nTransport type:")
@@ -339,8 +339,8 @@ async def main():
             use_bearer,
             server_url,
         ) = get_user_input()
-        
-        print(f"\n🔗 Connecting to: {server_url}")     
+
+        print(f"\n🔗 Connecting to: {server_url}")
         print(f"📡 Server hostname: {server_hostname}")
         print(f"🚀 Transport type: {transport_type}")
 

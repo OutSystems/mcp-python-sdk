@@ -291,7 +291,7 @@ mcp> quit
 
 The client uses interactive prompts for configuration. You'll be asked to provide:
 
-- **Server URL**: The full URL of your MCP server (default: https://localhost:8081)
+- **Server URL**: The full URL of your MCP server (default: <https://localhost:8081>1>)
   - If you provide a URL, it will be used directly
   - If you press Enter (empty), you'll be prompted for individual components:
     - **Server port**: The port where your MCP server is running (default: 8081)
