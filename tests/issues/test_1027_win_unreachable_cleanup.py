@@ -213,8 +213,10 @@ async def test_stdin_close_triggers_cleanup():
                 await anyio.sleep(0.1)
 
         # Check if process is still running
-        if hasattr(process, "returncode") and process.returncode is not None:  # pragma: no cover
-            pytest.fail(f"Server process exited with code {process.returncode}")
+        # fmt: off
+        if hasattr(process, "returncode") and process.returncode is not None:  # pyright: ignore[reportUnknownMemberType,reportAttributeAccessIssue]  # pragma: no cover
+            pytest.fail(f"Server process exited with code {process.returncode}")  # pyright: ignore[reportUnknownMemberType,reportAttributeAccessIssue]
+        # fmt: on
 
         assert Path(startup_marker).exists(), "Server startup marker not created"
 
