@@ -120,7 +120,6 @@ class SimplePrivateGateway:
                     extensions=extensions,
                     auth=auth,
                     timeout=timedelta(seconds=60),
-                    terminate_on_close=False,  # Skip session termination to avoid SSL errors
                 ) as (read_stream, write_stream, get_session_id):
                     await self._run_session(read_stream, write_stream, get_session_id)
 
