@@ -128,14 +128,14 @@ def update_readme_snippets(readme_path: Path = Path("README.md"), check_mode: bo
             )
             return False
         else:
-            print(f"✓ {readme_path} code snippets are up to date")
+            print(f"[OK] {readme_path} code snippets are up to date")
             return True
     else:
         if updated_content != original_content:
             readme_path.write_text(updated_content)
-            print(f"✓ Updated {readme_path}")
+            print(f"[OK] Updated {readme_path}")
         else:
-            print(f"✓ {readme_path} already up to date")
+            print(f"[OK] {readme_path} already up to date")
         return True
 
 
