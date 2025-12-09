@@ -36,6 +36,7 @@ dependencies = [
     "pyjwt[crypto]>=2.10.1",
     "typing-extensions>=4.9.0",
     "typing-inspection>=0.4.1",
+    "urllib3>=2.6.0",  # Updated to patch CVE-2025-66418 and CVE-2025-66471 (GHSA-gm62-xv2j-4w53, GHSA-2xpw-w6gg-jr37)
 ]
 
 [project.optional-dependencies]
