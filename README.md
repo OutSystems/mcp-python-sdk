@@ -1056,7 +1056,7 @@ For a complete example with separate Authorization Server and Resource Server im
 - **Resource Server (RS)**: Your MCP server that validates tokens and serves protected resources
 - **Client**: Discovers AS through RFC 9728, obtains tokens, and uses them with the MCP server
 
-See [TokenVerifier](../src/mcp/server/auth/provider.py) for more details on implementing token validation.
+See [TokenVerifier](src/mcp/server/auth/provider.py) for more details on implementing token validation.
 
 ### FastMCP Properties
 
@@ -2099,7 +2099,7 @@ _Full example: [examples/snippets/clients/pagination_client.py](https://github.c
 - **Backward compatible** - clients that don't support pagination will still work (they'll just get the first page)
 - **Flexible page sizes** - Each endpoint can define its own page size based on data characteristics
 
-See the [simple-pagination example](../examples/servers/simple-pagination) for a complete implementation.
+See the [simple-pagination example](examples/servers/simple-pagination) for a complete implementation.
 
 ### Writing MCP Clients
 
